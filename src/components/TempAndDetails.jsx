@@ -6,25 +6,27 @@ import { GiSunrise, GiSunset } from "react-icons/gi";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 import React from 'react';
 
-const TempAndDetails = () => {
+
+const TempAndDetails = ({weather:  {details, icon, temp, temp_min, temp_max, sunrise, sunset, humidity, speed, feels_like}}) => {
+
   const VDetails = [
     {
       id: 1,
       icon: FaThermometerEmpty,
-      title: "Real Feel",
-      value: "22°"
+      title: "Real feel" ,
+      value: `${feels_like}`
     },
     {
       id: 2,
       icon: BiSolidDropletHalf,
-      title: "Precipitation",
-      value: "22°"
+      title: "Humidity",
+      value: `${humidity}`
     },
     {
       id: 3,
       icon: FaWind,
       title: "Wind Speed",
-      value: "22°"
+      value: `${speed}`
     }
   ];
 
@@ -33,25 +35,25 @@ const TempAndDetails = () => {
       id: 1,
       icon: GiSunrise,
       title: "Sunrise",
-      value: "05:23"
+      value: `${sunrise}`
     },
     {
       id: 2,
       icon: GiSunset,
-      title: "Sunset",
-      value: "19:23"
+      title: "sunset",
+      value: `${sunset}`,
     },
     {
       id: 3,
       icon: MdKeyboardArrowUp,
       title: "High",
-      value: "25°C"
+      value: `${temp_max}`
     },
     {
       id: 4,
       icon: MdKeyboardArrowDown,
       title: "Low",
-      value: "15°C"
+      value: `${temp_min}`
     },
 
   ];
@@ -60,12 +62,12 @@ const TempAndDetails = () => {
     <div>
       <div className="flex items-center justify-center">
         <p className='text-blue-200 text-xl font-medium my-6'>
-          Rain
+          {`${details}`}
         </p>
       </div>
       <div className="flex items-center justify-between">
-        <TiWeatherDownpour size={40} className="text-white" />
-        <p className='text-white text-5xl font-medium ml-28'>22°C</p>
+      <img src={icon} alt="weather-icon" className="w-20"></img>
+        <p className='text-white text-5xl font-medium ml-20'>{`${temp.toFixed()}°`}</p>
         
         <div className="flex flex-col space-y-3 items-start">
           {VDetails.map(({ id, icon: Icon, title, value }) => (
